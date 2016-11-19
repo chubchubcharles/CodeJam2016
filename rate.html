@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CodeJam 2016</title>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+        body {
+            margin: 0px;
+    
+            font-family: Calibri;
+
+            color: #333333;
+        }
+
+        #header_bar {
+            position: fixed;
+            top: 0px;
+            z-index: 200;
+    
+            height: 50px;
+            width: 100%;
+            box-shadow: 0px 0px 20px #1A1A1A;
+    
+            font-size: large;
+
+            background-color: #262626;
+            color: #D9D9D9;  
+        }
+
+        #header_wrapper {
+            margin: 0px 40px 0px 40px;
+        }
+
+        #header_placeholder {
+            height: 50px;
+            width: 100%;
+        }
+
+        #title {
+	        float: left;
+            margin-right: 30px;
+            height: 50px;
+            padding: 0px 10px 0px 10px;
+        }
+
+        #title_left {
+            float: left;
+            height: 50px;
+    
+            line-height: 50px;
+            font-size: xx-large;
+            font-weight: bold;
+
+            color: #FFFFFF;
+        }
+
+        #menu {
+            height: 50px;
+        }
+    
+        #menu_right {
+            float: right;
+            height: 50px;
+
+            line-height: 50px;
+        }
+    
+        #header ul {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+    
+            list-style-type: none;
+        }
+    
+        #header li {
+            display: inline-block;
+        }
+
+        #header li a {
+            margin: 0px;
+            padding: 0px 10px 0px 10px;
+    
+            display: inline-block;
+            text-decoration: none;
+
+            color: #D9D9D9;
+        }
+
+        #header li a:hover {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        #container {
+            position: relative;
+            overflow: auto;
+            padding: 50px;
+            clear: both;
+
+            font-size: large;
+        }
+
+        #rating_image {
+            max-height: 600px;
+            max-width: 800px;
+            padding: 10px;
+            box-shadow: 0px 0px 10px #CCCCCC;
+        }
+
+        #star0 {
+            width: 50px;
+        }
+        #star1 {
+            width: 50px;
+        }
+        #star2 {
+            width: 50px;
+        }
+        #star3 {
+            width: 50px;
+        }
+        #star4 {
+            width: 50px;
+        }
+
+        #footer {
+            margin-bottom: 20px;
+    
+            text-align: center;
+
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="header_bar">
+            <div id="header_wrapper">
+                <a href="">
+                    <div id="title">
+                        <div id="title_left">CodeJam 2016</div>
+                    </div>
+                </a>
+                <div id="menu">
+                    <div id="menu_right">
+                        <ul>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header_placeholder"></div>
+    </div>
+
+    <div id="container" style="text-align: center">
+        <div id="wrapper" style="display: inline-block;">
+            <div id="left_div" style="float: left;">
+                <img id="rating_image" src="https://image.tmdb.org/t/p/w500/igDhbYQTvact1SbNDbzoeiFBGda.jpg" />
+            </div>
+            <div id="right_div" style="float: left; text-align: left; width: 500px; margin-left: 50px;">
+                <div style="text-align: center;">
+                    <h1>Doctor Who (2013)</h1>
+
+                    <br />
+
+                    <img id="star0" src="star_gray.png" onmouseover="onHoverStar(0)" style="cursor: pointer;" />
+                    <img id="star1" src="star_gray.png" onmouseover="onHoverStar(1)" style="cursor: pointer;" />
+                    <img id="star2" src="star_gray.png" onmouseover="onHoverStar(2)" style="cursor: pointer;" />
+                    <img id="star3" src="star_gray.png" onmouseover="onHoverStar(3)" style="cursor: pointer;" />
+                    <img id="star4" src="star_gray.png" onmouseover="onHoverStar(4)" style="cursor: pointer;" />
+
+                    <br />
+
+                    <div id="ratingComment" style="font-size: xx-large; margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var onHoverStar = function (starIndex) {
+            var stars = [];
+            for (var i = 0; i < 5; i++) {
+                stars.push(document.getElementById("star" + i));
+            }
+            for (var i = 0; i <= starIndex; i++) {
+                stars[i].src = "star_gold.png";
+            }
+            for (var i = starIndex + 1; i < 5; i++) {
+                stars[i].src = "star_gray.png";
+            }
+            var ratingComments = [];
+            ratingComments.push("Poor...");
+            ratingComments.push("Bad..");
+            ratingComments.push("Fair");
+            ratingComments.push("Good!");
+            ratingComments.push("EXCELLENT!");
+            var ratingComment = document.getElementById("ratingComment");
+            ratingComment.innerHTML = ratingComments[starIndex];
+        }
+    </script>
+
+    <div id="footer">
+        &copy; 2016 Charles Liu, Eddy Lu</a>
+    </div>
+</body>
+</html>
