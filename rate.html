@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0px;
-    
+
             font-family: Calibri;
 
             color: #333333;
@@ -18,15 +18,15 @@
             position: fixed;
             top: 0px;
             z-index: 200;
-    
+
             height: 50px;
             width: 100%;
             box-shadow: 0px 0px 20px #1A1A1A;
-    
+
             font-size: large;
 
             background-color: #262626;
-            color: #D9D9D9;  
+            color: #D9D9D9;
         }
 
         #header_wrapper {
@@ -48,7 +48,7 @@
         #title_left {
             float: left;
             height: 50px;
-    
+
             line-height: 50px;
             font-size: xx-large;
             font-weight: bold;
@@ -59,22 +59,22 @@
         #menu {
             height: 50px;
         }
-    
+
         #menu_right {
             float: right;
             height: 50px;
 
             line-height: 50px;
         }
-    
+
         #header ul {
             margin: 0px;
             padding: 0px;
             overflow: hidden;
-    
+
             list-style-type: none;
         }
-    
+
         #header li {
             display: inline-block;
         }
@@ -82,7 +82,7 @@
         #header li a {
             margin: 0px;
             padding: 0px 10px 0px 10px;
-    
+
             display: inline-block;
             text-decoration: none;
 
@@ -131,7 +131,7 @@
 
         #footer {
             margin-bottom: 20px;
-    
+
             text-align: center;
 
             font-size: large;
@@ -286,6 +286,8 @@
             </div>
         </div>
     </div>
+    <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
+    <script src="scripts/require.js"></script>
     <script>
         var ratingImgs = [];
         var ratingTitles = [];
@@ -415,6 +417,17 @@
             document.getElementById("historyTable_td_" + i + "_image").src = ratingImgs[i];
         }
 
+        require(['scripts/creds.js'], function(data){
+          // jsonData defined in creds.js
+          var xmlHttp = new XMLHttpRequest();
+          var theUrl = "https://api.themoviedb.org/3/genre/tv/list?api_key=" + jsonData["api-key"] + "&language=en-US"
+          xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+          xmlHttp.send( null );
+          console.log(xmlHttp.responseText);
+          // return xmlHttp.responseText;
+        });
+
+
         var currentRating = 0;
         var inTransition = false;
 
@@ -445,9 +458,9 @@
                                     clearInterval(fadeIn);
                                     inTransition = false;
                                 }
-                            }, 20);                        
+                            }, 20);
                         }
-                    }, 10);                
+                    }, 10);
                 }
                 else {
                     // execute request for recommendations
@@ -491,7 +504,6 @@
             }
         }
     </script>
-
     <div id="footer">
         &copy; 2016 Charles Liu, Eddy Lu
     </div>
