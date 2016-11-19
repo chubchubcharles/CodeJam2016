@@ -104,12 +104,15 @@
         }
 
         #rating_image {
-            max-height: 600px;
+            max-height: 700px;
             max-width: 800px;
             padding: 10px;
             box-shadow: 0px 0px 10px #CCCCCC;
         }
 
+        #star5 {
+            width: 50px;
+        }
         #star0 {
             width: 50px;
         }
@@ -159,53 +162,338 @@
 
     <div id="container" style="text-align: center">
         <div id="wrapper" style="display: inline-block;">
-            <div id="left_div" style="float: left;">
-                <img id="rating_image" src="https://image.tmdb.org/t/p/w500/igDhbYQTvact1SbNDbzoeiFBGda.jpg" />
+            <div id="left_div" style="float: left; width: 600px;">
+                <img id="rating_image" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" />
             </div>
             <div id="right_div" style="float: left; text-align: left; width: 500px; margin-left: 50px;">
                 <div style="text-align: center;">
-                    <h1>Doctor Who (2013)</h1>
+                    <h1 id="ratingHeader" style="margin-bottom: 20px;">Game of Thrones (2016)</h1>
+
+                    <img id="star5" src="star_gray.png" onmouseover="onHoverStar(5)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer; margin-right: 20px; opacity: 0.3" />
+                    <img id="star0" src="star_gray.png" onmouseover="onHoverStar(0)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
+                    <img id="star1" src="star_gray.png" onmouseover="onHoverStar(1)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
+                    <img id="star2" src="star_gray.png" onmouseover="onHoverStar(2)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
+                    <img id="star3" src="star_gray.png" onmouseover="onHoverStar(3)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
+                    <img id="star4" src="star_gray.png" onmouseover="onHoverStar(4)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
 
                     <br />
 
-                    <img id="star0" src="star_gray.png" onmouseover="onHoverStar(0)" style="cursor: pointer;" />
-                    <img id="star1" src="star_gray.png" onmouseover="onHoverStar(1)" style="cursor: pointer;" />
-                    <img id="star2" src="star_gray.png" onmouseover="onHoverStar(2)" style="cursor: pointer;" />
-                    <img id="star3" src="star_gray.png" onmouseover="onHoverStar(3)" style="cursor: pointer;" />
-                    <img id="star4" src="star_gray.png" onmouseover="onHoverStar(4)" style="cursor: pointer;" />
+                    <div id="ratingComment" style="font-size: xx-large; margin: 20px 0px 30px 0px;">&nbsp;</div>
 
-                    <br />
-
-                    <div id="ratingComment" style="font-size: xx-large; margin-top: 20px;"></div>
+                    <table id="historyTable">
+                        <tr id="historyTable_tr">
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_0_image" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" style="height: 80px; opacity: 1;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_1_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_2_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_3_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_4_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_5_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                        </tr>
+                        <tr id="historyTable_tr">
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_6_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_7_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_8_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_9_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_10_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_11_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                        </tr>
+                        <tr id="historyTable_tr">
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_12_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_13_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_14_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_15_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_16_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_17_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                        </tr>
+                        <tr id="historyTable_tr">
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_18_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_19_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_20_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_21_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_22_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_23_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                        </tr>
+                        <tr id="historyTable_tr">
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_24_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_25_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_26_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_27_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_28_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                            <td id="historyTable_td_0" style="width: 120px; height: 90px;">
+                                <img id="historyTable_td_29_image" src="" style="height: 80px; opacity: 0.3;" />
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
     <script>
+        var ratingImgs = [];
+        var ratingTitles = [];
+        var ratingYears = [];
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
+        ratingTitles.push("Game of Thrones");
+        ratingYears.push(2011);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTMwODI1OV5BMl5BanBnXkFtZTgwMDIzMTQ0NTE@._V1_.jpg");
+        ratingTitles.push("True Detective");
+        ratingYears.push(2014);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTU0ODQ4NDg2OF5BMl5BanBnXkFtZTgwNzczNTE4OTE@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
+        ratingTitles.push("Narcos");
+        ratingYears.push(2015);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BNmNiNDc4MzQtNjFmMC00MzQ1LTkyZjUtODMxN2UyMmYxZmFmXkEyXkFqcGdeQXVyNTMxMjgxMzA@._V1_SY1000_CR0,0,666,1000_AL_.jpg");
+        ratingTitles.push("Fargo");
+        ratingYears.push(2014);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjEzMDAxOTUyMV5BMl5BanBnXkFtZTgwNzAxMzYzOTE@._V1_.jpg");
+        ratingTitles.push("Stranger Things");
+        ratingYears.push(2016);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyOTgxMDI0Nl5BMl5BanBnXkFtZTgwOTE4MzczOTE@._V1_.jpg");
+        ratingTitles.push("The Night Of");
+        ratingYears.push(2016);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0ODYzODc0OV5BMl5BanBnXkFtZTgwMDk3OTcyMDE@._V1_SY1000_CR0,0,678,1000_AL_.jpg");
+        ratingTitles.push("Breaking Bad");
+        ratingYears.push(2008);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BNjk5MjYwNjg4NV5BMl5BanBnXkFtZTgwNzAzMzc5NzE@._V1_.jpg");
+        ratingTitles.push("Better Call Saul");
+        ratingYears.push(2015);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQzODQ3OTA3OV5BMl5BanBnXkFtZTgwMzUyNzI0MjE@._V1_.jpg");
+        ratingTitles.push("Happy Valley");
+        ratingYears.push(2014);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjEzMzc2NjA5NV5BMl5BanBnXkFtZTcwOTI1MDAzMQ@@._V1_.jpg");
+        ratingTitles.push("Sit Feet Under");
+        ratingYears.push(2001);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjM3ODMyMjc3MV5BMl5BanBnXkFtZTgwNDgzNDc5NzE@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
+        ratingTitles.push("House of Cards");
+        ratingYears.push(2013);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BNjc1NzYwODEyMV5BMl5BanBnXkFtZTcwNTcxMzU1MQ@@._V1_SY1000_CR0,0,735,1000_AL_.jpg");
+        ratingTitles.push("The Wire");
+        ratingYears.push(2002);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ5NzcyNDc5MV5BMl5BanBnXkFtZTgwMDMyOTY5NjE@._V1_SY1000_SX675_AL_.jpg");
+        ratingTitles.push("The Knick");
+        ratingYears.push(2014);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTEyODg2NzkwMDBeQTJeQWpwZ15BbWU4MDQwODI3MzIx._V1_.jpg");
+        ratingTitles.push("Sons of Anarchy");
+        ratingYears.push(2008);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQxNjA4NzA5OF5BMl5BanBnXkFtZTcwNTg1MzUyMQ@@._V1_.jpg");
+        ratingTitles.push("Deadwood");
+        ratingYears.push(2004);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjMwMTA5NDc5M15BMl5BanBnXkFtZTgwMjQ4MTY0MjE@._V1_.jpg");
+        ratingTitles.push("Utopia");
+        ratingYears.push(2013);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjMwNzk5Nzg2OV5BMl5BanBnXkFtZTgwMjg1OTk1NDE@._V1_SY1000_CR0,0,685,1000_AL_.jpg");
+        ratingTitles.push("Mad Men");
+        ratingYears.push(2007);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjE0NTc2MzM1OV5BMl5BanBnXkFtZTgwMDk2NjA2NjE@._V1_SY1000_CR0,0,735,1000_AL_.jpg");
+        ratingTitles.push("Homeland");
+        ratingYears.push(2011);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BNTc4NjI4NjYyNl5BMl5BanBnXkFtZTgwNzk1NTczNzE@._V1_.jpg");
+        ratingTitles.push("Making a Murderer");
+        ratingYears.push(2015);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BOTA2NDU2MzM5Nl5BMl5BanBnXkFtZTcwMTk3Njg3OA@@._V1_SY1000_CR0,0,667,1000_AL_.jpg");
+        ratingTitles.push("Spartacus: War of the Damned");
+        ratingYears.push(2010);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTYyMjI4NzYxOF5BMl5BanBnXkFtZTcwNTUwMTc1NA@@._V1_.jpg");
+        ratingTitles.push("Spartacus: Gods of the Arena");
+        ratingYears.push(2011);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BOTEzNzI3MDc0N15BMl5BanBnXkFtZTgwMzk1MzA5NzE@._V1_.jpg");
+        ratingTitles.push("Vikings");
+        ratingYears.push(2013);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BYTJhZWEwNTgtMGEyMS00NjRmLWIxNmItOTA1NTNlMTg5ZDg3XkEyXkFqcGdeQXVyMjQ1NjEyNzE@._V1_.jpg");
+        ratingTitles.push("Rome");
+        ratingYears.push(2005);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4NTkzNjg1OF5BMl5BanBnXkFtZTcwNjg3MTI1Ng@@._V1_.jpg");
+        ratingTitles.push("House M.D.");
+        ratingYears.push(2004);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTc4Mzg0MzMwMF5BMl5BanBnXkFtZTgwNzQ3NTY3NzE@._V1_SY1000_CR0,0,666,1000_AL_.jpg");
+        ratingTitles.push("American Crime Story");
+        ratingYears.push(2016);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTA1OTY0NTk5MTJeQTJeQWpwZ15BbWU4MDYwMjU4MjAy._V1_SY1000_CR0,0,666,1000_AL_.jpg");
+        ratingTitles.push("Supernatural");
+        ratingYears.push(2005);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMjAxNTk2MjM2NF5BMl5BanBnXkFtZTcwMjQyNDMyNA@@._V1_.jpg");
+        ratingTitles.push("Misfits");
+        ratingYears.push(2009);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTYzMDE2MzI4MF5BMl5BanBnXkFtZTgwNTkxODgxOTE@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
+        ratingTitles.push("Mr. Robot");
+        ratingYears.push(2015);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MjI4MjkxN15BMl5BanBnXkFtZTgwNjU5Nzk4NTE@._V1_.jpg");
+        ratingTitles.push("Sense8");
+        ratingYears.push(2015);
+
+        ratingImgs.push("https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0MjA5MzY4OF5BMl5BanBnXkFtZTgwNTA5NzkzNDE@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
+        ratingTitles.push("Bloodline");
+        ratingYears.push(2015);
+
+        for (var i = 0; i < 30; i++) {
+            document.getElementById("historyTable_td_" + i + "_image").src = ratingImgs[i];
+        }
+
+        var currentRating = 0;
+        var inTransition = false;
+
+        var onClickStar = function (starIndex) {
+            if (!inTransition) {
+                inTransition = true;
+                currentRating++;
+                if (currentRating < 30) {
+                    var intensity = 1;
+                    var fadeOut = setInterval(function () {
+                        if (intensity > 0) {
+                            intensity -= 0.01;
+                            document.getElementById("rating_image").style.opacity = intensity;
+                            document.getElementById("ratingHeader").style.opacity = intensity;
+                        }
+                        else {
+                            clearInterval(fadeOut);
+                            document.getElementById("rating_image").src = ratingImgs[currentRating];
+                            document.getElementById("ratingHeader").innerHTML = ratingTitles[currentRating] + " (" + ratingYears[currentRating] + ")";
+                            var fadeIn = setInterval(function () {
+                                if (intensity < 1) {
+                                    intensity += 0.01;
+                                    document.getElementById("historyTable_td_" + currentRating + "_image").style.opacity = 0.3 + intensity * 0.7;
+                                    document.getElementById("rating_image").style.opacity = intensity;
+                                    document.getElementById("ratingHeader").style.opacity = intensity;
+                                }
+                                else {
+                                    clearInterval(fadeIn);
+                                    inTransition = false;
+                                }
+                            }, 20);                        
+                        }
+                    }, 10);                
+                }
+                else {
+                    // execute request for recommendations
+                }
+            }
+        }
+
         var onHoverStar = function (starIndex) {
+
             var stars = [];
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 6; i++) {
                 stars.push(document.getElementById("star" + i));
             }
-            for (var i = 0; i <= starIndex; i++) {
-                stars[i].src = "star_gold.png";
-            }
-            for (var i = starIndex + 1; i < 5; i++) {
-                stars[i].src = "star_gray.png";
-            }
-            var ratingComments = [];
-            ratingComments.push("Poor...");
-            ratingComments.push("Bad..");
-            ratingComments.push("Fair");
-            ratingComments.push("Good!");
-            ratingComments.push("EXCELLENT!");
             var ratingComment = document.getElementById("ratingComment");
-            ratingComment.innerHTML = ratingComments[starIndex];
+
+            if (starIndex == -1) {
+                for (var i = 0; i < 5; i++) {
+                    stars[i].src = "star_gray.png";
+                }
+                stars[5].style.opacity = "0.3";
+                ratingComment.innerHTML = "&nbsp;";
+            }
+            else if (starIndex == 5) {
+                stars[5].style.opacity = "0.5";
+                ratingComment.innerHTML = "Haven't seen it";
+            }
+            else {
+                for (var i = 0; i <= starIndex; i++) {
+                    stars[i].src = "star_gold.png";
+                }
+                for (var i = starIndex + 1; i < 5; i++) {
+                    stars[i].src = "star_gray.png";
+                }
+                var ratingComments = [];
+                ratingComments.push("Poor...");
+                ratingComments.push("Bad..");
+                ratingComments.push("Fair");
+                ratingComments.push("Good!");
+                ratingComments.push("EXCELLENT!");
+                ratingComment.innerHTML = ratingComments[starIndex];
+            }
         }
     </script>
 
     <div id="footer">
-        &copy; 2016 Charles Liu, Eddy Lu</a>
+        &copy; 2016 Charles Liu, Eddy Lu
     </div>
 </body>
 </html>
