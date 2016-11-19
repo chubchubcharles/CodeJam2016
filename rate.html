@@ -168,12 +168,12 @@
                 <div style="text-align: center;">
                     <h1 id="ratingHeader" style="margin-bottom: 20px;">Game of Thrones (2016)</h1>
 
-                    <img id="star5" src="star_gray.png" onmouseover="onHoverStar(5)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer; margin-right: 20px; opacity: 0.3" />
-                    <img id="star0" src="star_gray.png" onmouseover="onHoverStar(0)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
-                    <img id="star1" src="star_gray.png" onmouseover="onHoverStar(1)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
-                    <img id="star2" src="star_gray.png" onmouseover="onHoverStar(2)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
-                    <img id="star3" src="star_gray.png" onmouseover="onHoverStar(3)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
-                    <img id="star4" src="star_gray.png" onmouseover="onHoverStar(4)" onmouseout="onHoverStar(-1)" onclick="onClickStar()" style="cursor: pointer;" />
+                    <img id="star5" src="star_gray.png" onmouseover="onHoverStar(5)" onmouseout="onHoverStar(-1)" onclick="onClickStar(this.id)" style="cursor: pointer; margin-right: 20px; opacity: 0.3" />
+                    <img id="star0" src="star_gray.png" onmouseover="onHoverStar(0)" onmouseout="onHoverStar(-1)" onclick="onClickStar(this.id)" style="cursor: pointer;" />
+                    <img id="star1" src="star_gray.png" onmouseover="onHoverStar(1)" onmouseout="onHoverStar(-1)" onclick="onClickStar(this.id)" style="cursor: pointer;" />
+                    <img id="star2" src="star_gray.png" onmouseover="onHoverStar(2)" onmouseout="onHoverStar(-1)" onclick="onClickStar(this.id)" style="cursor: pointer;" />
+                    <img id="star3" src="star_gray.png" onmouseover="onHoverStar(3)" onmouseout="onHoverStar(-1)" onclick="onClickStar(this.id)" style="cursor: pointer;" />
+                    <img id="star4" src="star_gray.png" onmouseover="onHoverStar(4)" onmouseout="onHoverStar(-1)" onclick="onClickStar(this.id)" style="cursor: pointer;" />
 
                     <br />
 
@@ -343,6 +343,11 @@
           return [ratingTitles, ratingImgs, ratingYears]
         }
 
+        function convert_star_id_to_rating(starIndex)
+        {
+          return parseInt(starIndex.substring(starIndex.length - 1), 10)+1;
+        }
+
         var ratingImgs = [];
         var ratingTitles = [];
         var ratingYears = [];
@@ -351,7 +356,7 @@
         require(['scripts/creds.js'], function(data){
           // load creds.js with requireJS in order to expose API token key to this environment
           var mostPop = fetch_most_pop(jsonData);
-          var display_limit = 5;
+          var display_limit = 3;
           var ratings = populate_show_info_arrays(jsonData, mostPop.splice(0,display_limit));
           var ratingTitles = ratings[0];
           var ratingImgs = ratings[1];
@@ -366,12 +371,19 @@
 
         var currentRating = 0;
         var inTransition = false;
+        var user_ratings = {};
 
         var onClickStar = function (starIndex) {
             if (!inTransition) {
                 inTransition = true;
                 currentRating++;
-                if (currentRating < 30) {
+                var ratings_total = 3 // for testing purposes, we're only using 3 movies now
+                if (currentRating < ratings_total) {
+                  // if still more recommendations to do
+                    var rating = convert_star_id_to_rating(starIndex)
+                    var showname = $("#ratingHeader").text()
+                    user_ratings[showname] = rating;
+
                     var intensity = 1;
                     var fadeOut = setInterval(function () {
                         if (intensity > 0) {
@@ -400,6 +412,10 @@
                 }
                 else {
                     // execute request for recommendations
+                    var rating = convert_star_id_to_rating(starIndex)
+                    var showname = $("#ratingHeader").text()
+                    user_ratings[showname] = rating;
+                    console.log(user_ratings);
                 }
             }
         }
