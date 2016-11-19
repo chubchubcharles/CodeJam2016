@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <title>CodeJam 2016</title>
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <style>
         body {
             margin: 0px;
@@ -352,7 +351,8 @@
         require(['scripts/creds.js'], function(data){
           // load creds.js with requireJS in order to expose API token key to this environment
           var mostPop = fetch_most_pop(jsonData);
-          var ratings = populate_show_info_arrays(jsonData, mostPop);
+          var display_limit = 5;
+          var ratings = populate_show_info_arrays(jsonData, mostPop.splice(0,display_limit));
           var ratingTitles = ratings[0];
           var ratingImgs = ratings[1];
           var ratingYears = ratings[2];
@@ -440,6 +440,7 @@
             }
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <div id="footer">
         &copy; 2016 Charles Liu, Eddy Lu
     </div>
