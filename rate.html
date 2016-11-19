@@ -412,10 +412,16 @@
                 }
                 else {
                     // execute request for recommendations
+
+                    // add last tv show item rating while the last img still remains
                     var rating = convert_star_id_to_rating(starIndex)
                     var showname = $("#ratingHeader").text()
                     user_ratings[showname] = rating;
-                    console.log(user_ratings);
+
+                    // stores user_ratings object into JSON file for retrieval after rendering next page
+                    localStorage.setItem('user_ratings', JSON.stringify(user_ratings));
+                    user_ratings = JSON.parse(localStorage.getItem('user_ratings'));
+                    // console.log(user_ratings);
                 }
             }
         }
