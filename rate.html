@@ -310,32 +310,34 @@
           return res
         }
 
-        function fetch_most_pop_movies(jsonData){
-          // ex URL "https://api.themoviedb.org/3/discover/movie?api_key=" + jsonData["api-key"] + "&sort_by=popularity.desc" +  "&language=en-US";
-          var taskParams = "discover/movie?"
-          var res = sendRequest(taskParams, "&sort_by=popularity.desc");
-          res = JSON.parse(res)["results"]
-          return res
+        function fetch_show_info(showInfo){
+          // ex url https://api.themoviedb.org/3/tv/1402?api_key=" + jsonData["api-key"] + "&language=en-US
+          var res = sendRequest("tv/" + showInfo + "?", "");
+          return JSON.parse(res);
         }
 
-        function fetch_most_pop(jsonData){
+        function fetch_most_pop_show_ids(jsonData, display_limit){
           // ex URL // https://api.themoviedb.org/3/discover/tv?api_key=" + jsonData["api-key"] + "&sort_by=popularity.desc&page=1&timezone=America/New_York&include_null_first_air_dates=false
           var taskParams = "discover/tv?"
           var res = sendRequest(taskParams, "&sort_by=popularity.desc");
-          res = JSON.parse(res)["results"]
-          return res
+          res = JSON.parse(res)["results"].splice(0,display_limit);
+          var showIds = []
+          res.forEach(function(show_obj){ showIds.push(show_obj["id"]);});
+          return showIds;
         }
 
         function populate_show_info_arrays(jsonData, showInfos)
         {
           showInfos.forEach(
             function(entry){
+              var entry = fetch_show_info(entry);
+              mostPop.push(entry);
+              // console.log(entry);
               var id = entry["id"];
               var show_name = entry["original_name"];
               var year = entry["first_air_date"].split("-")[0];
               var baseImgUrl = "https://image.tmdb.org/"
               var imgDimUrl = "t/p/w500/"
-              var jpgUrl = "xfWac8MTYDxujaxgPVcRD9yZaul.jpg"
               var jpgUrl = entry["poster_path"].substring(1);
               var fullImgUrl = baseImgUrl + imgDimUrl + jpgUrl;
               ratingTitles.push(show_name);
@@ -359,15 +361,14 @@
         var ratingTitles = [];
         var ratingYears = [];
 
-        var mostPop = {}
+        var mostPop = [];
+        var rating_limit = 3; // retrieves this amt of show_items only
 
         // "MAIN" file for all JavaScript
         require(['scripts/creds.js'], function(data){
           // load creds.js with requireJS in order to expose API token key to this environment
-          var display_limit = 30;
-          mostPop = fetch_most_pop(jsonData).splice(0, display_limit);
-          // console.log(mostPop);
-          var ratings = populate_show_info_arrays(jsonData, mostPop);
+          var showIds = fetch_most_pop_show_ids(jsonData, rating_limit);
+          var ratings = populate_show_info_arrays(jsonData, showIds);
           var ratingTitles = ratings[0];
           var ratingImgs = ratings[1];
           var ratingYears = ratings[2];
@@ -387,8 +388,7 @@
             if (!inTransition) {
                 inTransition = true;
                 currentRating++;
-                var ratings_total = 30 // for testing purposes, we're only using 3 movies now
-                if (currentRating < ratings_total) {
+                if (currentRating < rating_limit) {
                   // if still more recommendations to do
                     var rating = convert_star_id_to_rating(starIndex)
                     var showname = $("#ratingHeader").text()
@@ -427,13 +427,6 @@
                     var rating = convert_star_id_to_rating(starIndex)
                     var showname = $("#ratingHeader").text()
                     user_ratings[parse_title_from_header(showname)] = rating;
-                    // console.log(user_ratings);
-
-                    // var rand = {"name" : "TWD"};
-                    // var blah = {"name" : "chewy"};
-                    // var jsa = [rand, blah];
-                    // var a = jsa.filter(function(el){return el.name == "TWD";});
-                    // console.log(mostPop);
                     var finalUserPref = [];
                     if (typeof mostPop !== "undefined")
                     {
@@ -441,7 +434,6 @@
                       {
                         // console.log(showname);
                         var wd = mostPop.filter(function(el){return el.name == showname;})[0];
-                        // console.log(wd);
                         wd["user_rating"] = user_ratings[showname];
                         finalUserPref.push(wd);
                       }
@@ -493,7 +485,7 @@
                 ratingComment.innerHTML = ratingComments[starIndex];
             }
         }
-    </script>    
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <div id="footer">
         &copy; 2016 Charles Liu, Eddy Lu
