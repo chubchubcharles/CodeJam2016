@@ -538,6 +538,17 @@
             "vote_count": 291
         });
 
+        var query = window.location.search.substring(1);
+        var splitQuery = query.split("&");
+
+        var resultIds = [];
+
+        for (var i = 0; i < 5; i++) {
+            resultIds.push(parseInt(splitQuery[i].substring(4)));
+        }
+
+        console.log(resultIds);
+
         var updateResult = function (index) {
 
             document.getElementById("result_h1").innerHTML = results[index].name + " (" + parseInt(results[index].last_air_date.substring(0, 4)) + ")";

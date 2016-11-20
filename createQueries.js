@@ -66,5 +66,20 @@
     }
 
     console.log(generateQueries());
+
+    var resultIds = [];
+
+    resultIds.push(1);
+    resultIds.push(22);
+    resultIds.push(333);
+    resultIds.push(4444);
+    resultIds.push(55555);
+
+    var load = function () {
+        window.location.href = "results.html" + "?id1=" + resultIds[0] + "&id2=" + resultIds[1] 
+            + "&id3=" + resultIds[2] + "&id4=" + resultIds[3] + "&id5=" + resultIds[4];
+    }
+
+    load();
 }
 
