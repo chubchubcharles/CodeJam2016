@@ -348,16 +348,24 @@
           return parseInt(starIndex.substring(starIndex.length - 1), 10)+1;
         }
 
+        function parse_title_from_header(header)
+        {
+          return header.split("(")[0].trim();
+        }
+
         var ratingImgs = [];
         var ratingTitles = [];
         var ratingYears = [];
 
+        var mostPop = {}
+
         // "MAIN" file for all JavaScript
         require(['scripts/creds.js'], function(data){
           // load creds.js with requireJS in order to expose API token key to this environment
-          var mostPop = fetch_most_pop(jsonData);
           var display_limit = 3;
-          var ratings = populate_show_info_arrays(jsonData, mostPop.splice(0,display_limit));
+          mostPop = fetch_most_pop(jsonData).splice(0,display_limit);
+          // console.log(mostPop);
+          var ratings = populate_show_info_arrays(jsonData, mostPop);
           var ratingTitles = ratings[0];
           var ratingImgs = ratings[1];
           var ratingYears = ratings[2];
@@ -382,7 +390,7 @@
                   // if still more recommendations to do
                     var rating = convert_star_id_to_rating(starIndex)
                     var showname = $("#ratingHeader").text()
-                    user_ratings[showname] = rating;
+                    user_ratings[parse_title_from_header(showname)] = rating;
 
                     var intensity = 1;
                     var fadeOut = setInterval(function () {
@@ -416,12 +424,34 @@
                     // add last tv show item rating while the last img still remains
                     var rating = convert_star_id_to_rating(starIndex)
                     var showname = $("#ratingHeader").text()
-                    user_ratings[showname] = rating;
+                    user_ratings[parse_title_from_header(showname)] = rating;
+                    // console.log(user_ratings);
+
+                    // var rand = {"name" : "TWD"};
+                    // var blah = {"name" : "chewy"};
+                    // var jsa = [rand, blah];
+                    // var a = jsa.filter(function(el){return el.name == "TWD";});
+                    // console.log(mostPop);
+                    var finalUserPref = [];
+                    if (typeof mostPop !== "undefined")
+                    {
+                      for (var showname in user_ratings)
+                      {
+                        // console.log(showname);
+                        var wd = mostPop.filter(function(el){return el.name == showname;})[0];
+                        // console.log(wd);
+                        wd["user_rating"] = user_ratings[showname];
+                        finalUserPref.push(wd);
+                      }
+                    }
+                    console.log(finalUserPref);
 
                     // stores user_ratings object into JSON file for retrieval after rendering next page
-                    localStorage.setItem('user_ratings', JSON.stringify(user_ratings));
-                    user_ratings = JSON.parse(localStorage.getItem('user_ratings'));
+                    // localStorage.setItem('user_ratings', JSON.stringify(user_ratings));
+                    // user_ratings = JSON.parse(localStorage.getItem('user_ratings'));
                     // console.log(user_ratings);
+
+                    // insert js code after
                 }
             }
         }
