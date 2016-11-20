@@ -146,9 +146,9 @@
         <div id="header_placeholder"></div>
     </div>
     <div id="container">
-        <div id="wrapper" style="display: inline-block; position: fixed; bottom: 0; width: 100%; padding: 0px 0px 300px 100px; opacity: 0;">
-            <h1 style="font-size: 50px;">CodeJam 2016 TV Recommender</h1>
-            <input id="try_out_button" type="button" value="Begin &#9658;" />
+        <div id="wrapper" style="display: inline-block; position: fixed; bottom: 0; width: 100%; padding: 0px 0px 300px 100px;">
+            <h1 id="index_header" style="margin-bottom: 20px; font-size: 50px; opacity: 0;">CodeJam 2016 TV Recommender</h1>
+            <input id="try_out_button" type="button" value="BEGIN &#9658;" style="opacity: 0;" />
         </div>
     </div>
     <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
@@ -176,8 +176,12 @@
         }, 2000);
 
         setTimeout(function () {
-            fadeIn("wrapper");
+            fadeIn("index_header");
         }, 4500);
+
+        setTimeout(function () {
+            fadeIn("try_out_button");
+        }, 7000);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </body>
