@@ -91,7 +91,38 @@
             font-size: large;
         }
 
+        #results_bar_image_1 {
+            margin-left: 10px;
+            height: 100px;
+            vertical-align: middle;
+        }
+        #results_bar_image_2 {
+            margin-left: 10px;
+            height: 100px;
+            vertical-align: middle;
+        }
+        #results_bar_image_3 {
+            margin-left: 10px;
+            height: 100px;
+            vertical-align: middle;
+        }
+        #results_bar_image_4 {
+            margin-left: 10px;
+            height: 100px;
+            vertical-align: middle;
+        }
+        #results_bar_image_5 {
+            margin-left: 10px;
+            height: 100px;
+            vertical-align: middle;
+        }
+
+        #results_bar_image_header {
+            display: inline; vertical-align: middle;
+        }
+
         #rating_image {
+            margin-left: 50px;
             max-height: 600px;
             max-width: 800px;
             padding: 10px;
@@ -157,6 +188,32 @@
 
     <div id="container" style="text-align: center">
         <div id="wrapper" style="display: inline-block;">
+            <div id="results_bar_div" style="float: left; vertical-align: middle;">
+                <div id="results_bar_listing_1" onclick="updateResultsPane(1)" style="cursor: pointer; opacity: 0.3;">
+                    <h1 id="results_bar_image_header">#1</h1>
+                    <img id="results_bar_image_1" src="" />
+                </div>
+                <br />
+                <div id="results_bar_listing_2" onclick="updateResultsPane(2)" style="cursor: pointer; opacity: 0.3;">
+                    <h1 id="results_bar_image_header">#2</h1>
+                    <img id="results_bar_image_2" src="" />
+                </div>
+                <br />
+                <div id="results_bar_listing_3" onclick="updateResultsPane(3)" style="cursor: pointer; opacity: 0.3;">
+                    <h1 id="results_bar_image_header">#3</h1>
+                    <img id="results_bar_image_3" src="" />
+                </div>
+                <br />
+                <div id="results_bar_listing_4" onclick="updateResultsPane(4)" style="cursor: pointer; opacity: 0.3;">
+                    <h1 id="results_bar_image_header">#4</h1>
+                    <img id="results_bar_image_4" src="" />
+                </div>
+                <br />
+                <div id="results_bar_listing_5" onclick="updateResultsPane(5)" style="cursor: pointer; opacity: 1;">
+                    <h1 id="results_bar_image_header">#5</h1>
+                    <img id="results_bar_image_5" src="" />
+                </div>
+            </div>
             <div id="left_div" style="float: left;">
                 <img id="rating_image" src="" />
             </div>
@@ -211,8 +268,6 @@
             resultIds.push(parseInt(splitQuery[i].substring(4)));
         }
 
-        console.log(resultIds);
-
         var results = [];
 
         require(['scripts/creds.js'], function (data) {
@@ -234,11 +289,17 @@
                 return JSON.parse(res);
             }
 
-            results.push(fetch_show_info(1402));
+            for (var i = 0; i < 5; i++) {
+                results.push(fetch_show_info(resultIds[i]));
+            }
 
             var updateResult = function (index) {
 
-                document.getElementById("rating_image").src = "https://image.tmdb.org/t/p/w500/" + results[0].poster_path;
+                for (var i = 1; i <= 5; i++) {
+                    document.getElementById("results_bar_image_" + i).src = "https://image.tmdb.org/t/p/w500/" + results[i - 1].poster_path;
+                }
+
+                document.getElementById("rating_image").src = "https://image.tmdb.org/t/p/w500/" + results[index].poster_path;
 
                 document.getElementById("result_h1").innerHTML = results[index].name + " (" + parseInt(results[index].last_air_date.substring(0, 4)) + ")";
 
@@ -260,7 +321,6 @@
 
                 current_results_createdBy_div = "";
                 for (var j = 0; j < results[index].created_by.length; j++) {
-                    console.log(results[index].created_by[j].name);
                     var img_html = "";
                     if (results[index].created_by[j].profile_path) {
                         img_html = "<img id=\"created_by_img\" src=\"https://image.tmdb.org/t/p/w500/" + results[index].created_by[j].profile_path + "\"><br>";
@@ -275,12 +335,20 @@
                 document.getElementById("more_info_button").onclick = function () {
                     var win = window.open(results[index].homepage, '_blank');
                 }
-
             }
 
-            updateResult(0);
-
+            updateResult(4);
         });
+
+        var updateResultsPane = function (index) {
+            for (var i = 1; i <= 5; i++) {
+                if (i == index) {
+                    continue;
+                }
+                document.getElementById("results_bar_listing_" + i).style.opacity = 0.3;
+            }
+            document.getElementById("results_bar_listing_" + index).style.opacity = 1;
+        }
 
     </script>
 
