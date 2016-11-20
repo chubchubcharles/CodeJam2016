@@ -5,6 +5,8 @@
     var years = queryParameters.years;
     var avgRatingPerGenre = queryParameters.genre_avg_ratings;
 
+    console.log(avgRatingPerGenre);
+
     // Methods related to summarizing the sample of shows we tell user to rate ; not indicative of user ratings!
     var findMostCountsPerAttrb = function(attributes)
     {
@@ -60,9 +62,24 @@
       var genre_counts = genres.map(function(genre){ return genre.count;});
       var sum_genre_counts = genre_counts.reduce(add, 0);
       genres.forEach(function(genre){
-        genre_scores[genre.name] = (genre.count/sum_genre_counts)*avgRatingPerGenre[genre.name];
+        // genre_scores[genre.name] = (genre.count/sum_genre_counts)*avgRatingPerGenre[genre.name];
+        genre_scores[genre.name] = avgRatingPerGenre[genre.name];
       })
       return genre_scores;
+    }
+
+    var findTopGenres = function(genres_scores){
+      var topGenres = []
+      var scores = Object.keys( genres_scores ).map(function ( key ) { return genres_scores[key]; });
+      var topRating = Math.max.apply( null, scores );
+      for (var key in genres_scores){
+        console.log(genres_scores[key], " vs. " + topRating);
+        if (genres_scores[key] == topRating)
+        {
+          topGenres.push(key);
+        }
+      }
+      return topGenres;
     }
 
     //var genre_importance = 2;
@@ -75,8 +92,9 @@
 
     scores = findGenreScores(genres);
     console.log(scores);
-    var topGenre = Object.keys(scores).reduce(function(a, b){ return scores[a] > scores[b] ? a : b });
-    console.log(topGenre);
+    var topGenres = findTopGenres(scores);
+    console.log("There are the genres tied for top:"  + topGenres); // array of topGenres which are tied for the highest avg rating
+
 
     var baseURL = "http://hello123.com/lalala/abc/?=";
     var genreURL = "&genre=" + topGenre.id;

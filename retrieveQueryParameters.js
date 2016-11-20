@@ -88,7 +88,7 @@
             }
           })
         }
-        avg_ratings[genre] = avg_ratings[genre]/total_genre_samples;
+        avg_ratings[genre.name] = avg_ratings[genre.name]/total_genre_samples;
       })
       return avg_ratings;
     }
