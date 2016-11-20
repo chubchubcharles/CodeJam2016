@@ -178,12 +178,12 @@
         <div id="wrapper" style="display: inline-block;">  
             
             <div id="instruction1">
-                <h1 id="instruction1_h1" style="margin-bottom: 50px;">We're going to show you 30 TV show listings...</h1>
-                <span id="instructions_rating_image_span">
+                <span id="instructions_rating_image_span" style="margin-bottom: 50px;">
                     <img id="instructions_rating_image" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" />
                     <img id="instructions_rating_image" src="https://image.tmdb.org/t/p/w500/igDhbYQTvact1SbNDbzoeiFBGda.jpg" />
                     <img id="instructions_rating_image" src="https://images-na.ssl-images-amazon.com/images/I/51VHqph7piL.jpg" />
-                </span>
+                </span>                
+                <h1 id="instruction1_h1">We're going to show you 20 TV show listings...</h1>
             </div>
             
             <!--<div id="instruction2">
@@ -215,7 +215,7 @@
                 else {
                     clearInterval(fadeInInterval);
                 }
-            }, 25);
+            }, 15);
         }
 
         var fadeOut = function (id) {
@@ -251,7 +251,7 @@
 
         setTimeout(function () {
             document.getElementById("instruction1").innerHTML =
-                "<h1 id=\"instruction2_h1\" style=\"margin-bottom: 50px;\">Then press on a star to rate each show</h1>"
+                "<h1 id=\"instruction2_h1\" style=\"margin-bottom: 50px;\">For each show, press on a star to rate the show</h1>"
                     + "<div id=\"star_div\"><img id=\"star5\" src=\"star_gray.png\" style=\"opacity: 0.3\" /></div>"
                     + "<div id=\"star_div\"><img id=\"star0\" src=\"star_gray.png\" /></div>"
                     + "<div id=\"star_div\"><img id=\"star1\" src=\"star_gray.png\" /></div>"

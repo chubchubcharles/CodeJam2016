@@ -187,7 +187,10 @@
     </div>
 
     <div id="container" style="text-align: center">
-        <div id="wrapper" style="display: inline-block;">
+        <div id="loading" style="opacity: 0;">
+            <h1>Loading our top 5 recommendations...</h1>
+        </div>
+        <div id="wrapper" style="display: inline-block; opacity: 0;">
             <div id="results_bar_div" style="float: left; vertical-align: middle;">
                 <div id="results_bar_listing_1" onclick="updateResultsPane(1)" style="cursor: pointer; opacity: 0.3;">
                     <h1 id="results_bar_image_header">#1</h1>
@@ -338,6 +341,29 @@
             }
 
             updateResult(4);
+
+            var fadeIn = function (id) {
+                var intensity = 0;
+                var fadeInInterval = setInterval(function () {
+                    if (intensity < 1) {
+                        intensity += 0.01;
+                        document.getElementById(id).style.opacity = intensity;
+                    }
+                    else {
+                        clearInterval(fadeInInterval);
+                    }
+                }, 15);
+            }
+
+            setTimeout(function () {
+                fadeIn("loading");
+            }, 1000);
+
+            setTimeout(function () {
+                document.getElementById("loading").innerHTML = "";
+                fadeIn("wrapper");
+            }, 6000);
+
         });
 
         var updateResultsPane = function (index) {
