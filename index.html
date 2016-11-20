@@ -4,13 +4,181 @@
 <head>
     <meta charset="utf-8" />
     <title>CodeJam 2016</title>
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <style>
-        
+    <style>       
+         body {
+            margin: 0px;
+            font-family: Calibri;
+            color: #333333;
+            background-image: url("background.jpg");
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #header_bar {
+            position: fixed;
+            top: 0px;
+            z-index: 200;
+            height: 50px;
+            width: 100%;
+            box-shadow: 0px 0px 20px #1A1A1A;
+            font-size: large;
+            background-color: #262626;
+            color: #D9D9D9;
+        }
+
+        #header_wrapper {
+            margin: 0px 40px 0px 40px;
+        }
+
+        #header_placeholder {
+            height: 50px;
+            width: 100%;
+        }
+
+        #title {
+            float: left;
+            margin-right: 30px;
+            height: 50px;
+            padding: 0px 10px 0px 10px;
+        }
+
+        #title_left {
+            float: left;
+            height: 50px;
+            line-height: 50px;
+            font-size: xx-large;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        #menu {
+            height: 50px;
+        }
+
+        #menu_right {
+            float: right;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        #header ul {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+            list-style-type: none;
+        }
+
+        #header li {
+            display: inline-block;
+        }
+
+        #header li a {
+            margin: 0px;
+            padding: 0px 10px 0px 10px;
+            display: inline-block;
+            text-decoration: none;
+            color: #D9D9D9;
+        }
+
+        #header li a:hover {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        #container {
+            position: relative;
+            overflow: auto;
+            clear: both;
+            font-size: large;
+        }
+
+        #try_out_button {
+            height: 60px;
+            width: 200px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 30px;
+
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 20px;
+            text-align: center;
+
+            background-color: #585858;
+            color: #D9D9D9;
+
+            cursor: pointer;
+        }
+
+        #try_out_button:hover {
+            background-color: #686868;
+        }
+
+        #footer {
+            margin-bottom: 20px;
+
+            text-align: center;
+
+            font-size: large;
+        }
     </style>
 </head>
 <body>
-    <script src="retrieveQueryParameters.js"></script>
-    <script src="createQueries.js"></script>
+    <div id="header" style="opacity: 0;">
+        <div id="header_bar">
+            <div id="header_wrapper">
+                <a href="">
+                    <div id="title">
+                        <div id="title_left">CodeJam 2016</div>
+                    </div>
+                </a>
+                <div id="menu">
+                    <div id="menu_right">
+                        <ul>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header_placeholder"></div>
+    </div>
+    <div id="container">
+        <div id="wrapper" style="display: inline-block; position: fixed; bottom: 0; width: 100%; padding: 0px 0px 300px 100px; opacity: 0;">
+            <h1 style="font-size: 50px;">CodeJam 2016 TV Recommender</h1>
+            <input id="try_out_button" type="button" value="Begin &#9658;" />
+        </div>
+    </div>
+    <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
+    <script src="scripts/require.js"></script>
+    <script>
+        document.getElementById("try_out_button").onclick = function () {
+            var win = window.open("rateinstructions.html", "_self");
+        }
+
+        var fadeIn = function (id) {
+            var intensity = 0;
+            var fadeInInterval = setInterval(function () {
+                if (intensity < 1) {
+                    intensity += 0.01;
+                    document.getElementById(id).style.opacity = intensity;
+                }
+                else {
+                    clearInterval(fadeInInterval);
+                }
+            }, 15);
+        }
+
+        setTimeout(function () {
+            fadeIn("header");
+        }, 2000);
+
+        setTimeout(function () {
+            fadeIn("wrapper");
+        }, 4500);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </body>
 </html>
