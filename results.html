@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CodeJam 2016</title>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <style>
+        body {
+            margin: 0px;
+            font-family: Calibri;
+            color: #333333;
+        }
+
+        #header_bar {
+            position: fixed;
+            top: 0px;
+            z-index: 200;
+            height: 50px;
+            width: 100%;
+            box-shadow: 0px 0px 20px #1A1A1A;
+            font-size: large;
+            background-color: #262626;
+            color: #D9D9D9;
+        }
+
+        #header_wrapper {
+            margin: 0px 40px 0px 40px;
+        }
+
+        #header_placeholder {
+            height: 50px;
+            width: 100%;
+        }
+
+        #title {
+            float: left;
+            margin-right: 30px;
+            height: 50px;
+            padding: 0px 10px 0px 10px;
+        }
+
+        #title_left {
+            float: left;
+            height: 50px;
+            line-height: 50px;
+            font-size: xx-large;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        #menu {
+            height: 50px;
+        }
+
+        #menu_right {
+            float: right;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        #header ul {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+            list-style-type: none;
+        }
+
+        #header li {
+            display: inline-block;
+        }
+
+            #header li a {
+                margin: 0px;
+                padding: 0px 10px 0px 10px;
+                display: inline-block;
+                text-decoration: none;
+                color: #D9D9D9;
+            }
+
+                #header li a:hover {
+                    background-color: #1A1A1A;
+                    color: #FFFFFF;
+                }
+
+        #container {
+            position: relative;
+            overflow: auto;
+            padding: 50px;
+            clear: both;
+            font-size: large;
+        }
+
+        #rating_image {
+            max-height: 600px;
+            max-width: 800px;
+            padding: 10px;
+            box-shadow: 0px 0px 10px #CCCCCC;
+        }
+
+        #star0 {
+            width: 50px;
+        }
+
+        #star1 {
+            width: 50px;
+        }
+
+        #star2 {
+            width: 50px;
+        }
+
+        #star3 {
+            width: 50px;
+        }
+
+        #star4 {
+            width: 50px;
+        }
+
+        #footer {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="header_bar">
+            <div id="header_wrapper">
+                <a href="">
+                    <div id="title">
+                        <div id="title_left">CodeJam 2016</div>
+                    </div>
+                </a>
+                <div id="menu">
+                    <div id="menu_right">
+                        <ul>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header_placeholder"></div>
+    </div>
+
+    <div id="container" style="text-align: center">
+        <div id="wrapper" style="display: inline-block;">
+            <div id="left_div" style="float: left;">
+                <img id="rating_image" src="https://image.tmdb.org/t/p/w500/igDhbYQTvact1SbNDbzoeiFBGda.jpg" />
+            </div>
+            <div id="right_div" style="float: left; text-align: left; width: 500px; margin-left: 50px;">
+                <div style="text-align: center;">
+                    <h1>Doctor Who (2013)</h1>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var results = [];
+        results.push({
+            "backdrop_path": "/cVWsigSx97cTw1QfYFFsCMcR4bp.jpg",
+            "created_by": [
+            {
+                "id": 57293,
+                "name": "Sydney Newman",
+                "profile_path": "/1YfvkmiBjWPI67GsfoMd1NoPews.jpg"
+            },
+            {
+                "id": 1213434,
+                "name": "C. E. Webber",
+                "profile_path": null
+            },
+            {
+                "id": 1213433,
+                "name": "Donald Wilson",
+                "profile_path": "/1DeMkL3rF12uHMeMUlHXAoMUvDC.jpg"
+            }
+            ],
+            "episode_run_time": [
+            80,
+            70,
+            50,
+            60,
+            45
+            ],
+            "first_air_date": "2005-03-26",
+            "genres": [
+            {
+                "id": 28,
+                "name": "Action"
+            },
+            {
+                "id": 12,
+                "name": "Adventure"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 878,
+                "name": "Science Fiction"
+            }
+            ],
+            "homepage": "http://www.bbc.co.uk/programmes/b006q2x0",
+            "id": 57243,
+            "in_production": true,
+            "languages": [
+            "en"
+            ],
+            "last_air_date": "2017-04-30",
+            "name": "Doctor Who",
+            "networks": [
+            {
+                "id": 4,
+                "name": "BBC One"
+            },
+            {
+                "id": 511,
+                "name": "France 4"
+            }
+            ],
+            "number_of_episodes": 116,
+            "number_of_seasons": 10,
+            "origin_country": [
+            "GB"
+            ],
+            "original_language": "en",
+            "original_name": "Doctor Who",
+            "overview": "The Doctor looks and seems human. He's handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living – more of a hobby actually, and he's very, very good at it. He's saved us from alien menaces and evil from before time began – but just who is he?",
+            "popularity": 36.315782,
+            "poster_path": "/igDhbYQTvact1SbNDbzoeiFBGda.jpg",
+            "production_companies": [
+            {
+                "name": "BBC Wales",
+                "id": 4762
+            },
+            {
+                "name": "Canadian Broadcasting Corporation",
+                "id": 71708
+            }
+            ],
+            "seasons": [
+            {
+                "air_date": "2005-11-18",
+                "episode_count": 161,
+                "id": 58476,
+                "poster_path": "/Shm5ZavLApx6HMFWviKP5Sx1J8.jpg",
+                "season_number": 0
+            },
+            {
+                "air_date": "2005-03-26",
+                "episode_count": 13,
+                "id": 58468,
+                "poster_path": "/9Jt2FFCAME7eHDC28r4qCHErhhF.jpg",
+                "season_number": 1
+            },
+            {
+                "air_date": "2006-04-15",
+                "episode_count": 13,
+                "id": 58469,
+                "poster_path": "/oXVmsIkZCgJDNcZJJxzvV7zwyb1.jpg",
+                "season_number": 2
+            },
+            {
+                "air_date": "2007-04-01",
+                "episode_count": 13,
+                "id": 58470,
+                "poster_path": "/67xbjSv353G2rqQIs6dnDKc6P11.jpg",
+                "season_number": 3
+            },
+            {
+                "air_date": "2008-04-05",
+                "episode_count": 13,
+                "id": 58471,
+                "poster_path": "/h6hogh9U371q87XLhvrJbczg8lm.jpg",
+                "season_number": 4
+            },
+            {
+                "air_date": "2010-04-03",
+                "episode_count": 13,
+                "id": 58472,
+                "poster_path": "/hUsQerEeMqsu9cVYzMEB2OGJjrw.jpg",
+                "season_number": 5
+            },
+            {
+                "air_date": "2011-04-23",
+                "episode_count": 13,
+                "id": 58473,
+                "poster_path": "/xmfMcVkVer5r33QhA4e2DpIR78B.jpg",
+                "season_number": 6
+            },
+            {
+                "air_date": "2012-09-01",
+                "episode_count": 13,
+                "id": 58474,
+                "poster_path": "/6biGcR0OyFnKRxxUW7bGtK49wTd.jpg",
+                "season_number": 7
+            },
+            {
+                "air_date": "2014-08-23",
+                "episode_count": 12,
+                "id": 58475,
+                "poster_path": "/wLxULmhnIM1wbzjzvFnEq8YXtFB.jpg",
+                "season_number": 8
+            },
+            {
+                "air_date": "2015-09-19",
+                "episode_count": 12,
+                "id": 64188,
+                "poster_path": "/uidaCdI0hKiZGfMzWHNMYeNZyV7.jpg",
+                "season_number": 9
+            },
+            {
+                "air_date": "2017-04-30",
+                "episode_count": 1,
+                "id": 76615,
+                "poster_path": null,
+                "season_number": 10
+            }
+            ],
+            "status": "Returning Series",
+            "type": "Scripted",
+            "vote_average": 7.1,
+            "vote_count": 291
+        });
+
+        console.log(results[0].name);
+        console.log(parseInt(results[0].last_air_date.substring(0, 4)));
+        for (var j = 0; j < results[0].created_by.length; j++) {
+            console.log(results[0].created_by[j].name);
+        }
+
+    </script>
+
+    <div id="footer">
+        &copy; 2016 Charles Liu, Eddy Lu</a>
+    </div>
+</body>
+</html>
