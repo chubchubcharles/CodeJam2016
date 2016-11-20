@@ -98,24 +98,32 @@
             box-shadow: 0px 0px 10px #CCCCCC;
         }
 
-        #star0 {
-            width: 50px;
+        #created_by_img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
         }
 
-        #star1 {
-            width: 50px;
+        #more_info_button {
+            height: 50px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;   
+            margin-top: 30px;
+    
+            display: inline-block;
+            vertical-align: middle;
+            font-size: large;
+            text-align: center;
+
+            background-color: #585858;
+            color: #D9D9D9;
+
+            cursor: pointer;
         }
 
-        #star2 {
-            width: 50px;
-        }
-
-        #star3 {
-            width: 50px;
-        }
-
-        #star4 {
-            width: 50px;
+        #more_info_button:hover {
+            background-color: #686868;
         }
 
         #footer {
@@ -155,10 +163,39 @@
             <div id="right_div" style="float: left; text-align: left; width: 500px; margin-left: 50px;">
                 <div style="text-align: center;">
                     <h1>Doctor Who (2013)</h1>
-
-
-
                 </div>
+                <h2 style="display: inline; margin-right: 10px;">Genres:</h2>
+                <span id="results_genres_span" style="font-size: larger;">&nbsp;</span>
+
+                <br />
+                
+                <h2 style=" margin-right: 10px;">Created By:</h2>
+                <div id="results_createdBy_div">&nbsp;</div>
+
+                <br />
+
+                <h3 style="display: inline;  margin-right: 10px;">Number of Episodes:</h3>
+                <span id="number_of_episodes_span" style="font-size: larger;">&nbsp;</span>
+
+                <br />
+
+                <h3 style="display: inline;  margin-right: 10px;">Number of Seasons:</h3>
+                <span id="number_of_seasons_span" style="font-size: larger;">&nbsp;</span>
+                
+                <br /><br />
+
+                <h3 style="display: inline; margin-right: 10px;">Vote Average:</h3>
+                <span id="vote_average_span" style="font-size: larger;">&nbsp;</span>
+
+                <br />
+
+                <h3 style="display: inline; margin-right: 10px;">Number of Votes:</h3>
+                <span id="vote_count_span" style="font-size: larger;">&nbsp;</span>
+
+                <br />
+
+                <input id="more_info_button" type="button" value="More Info &#9658;" />
+
             </div>
         </div>
     </div>
@@ -334,14 +371,45 @@
 
         console.log(results[0].name);
         console.log(parseInt(results[0].last_air_date.substring(0, 4)));
+
+        document.getElementById("results_genres_span").innerHTML = "";
+        for (var j = 0; j < results[0].genres.length; j++) {
+            if (j == 0) {
+                document.getElementById("results_genres_span").innerHTML += results[0].genres[j].name;
+            }
+            else {
+                document.getElementById("results_genres_span").innerHTML += ", " + results[0].genres[j].name;
+            }
+        }
+
+        document.getElementById("number_of_episodes_span").innerHTML = results[0].number_of_episodes;
+        document.getElementById("number_of_seasons_span").innerHTML = results[0].number_of_seasons;
+        
+        document.getElementById("vote_average_span").innerHTML = results[0].vote_average;
+        document.getElementById("vote_count_span").innerHTML = results[0].vote_count;
+
+        current_results_createdBy_div = "";
         for (var j = 0; j < results[0].created_by.length; j++) {
             console.log(results[0].created_by[j].name);
+            var img_html = "";
+            if (results[0].created_by[j].profile_path) {
+                img_html = "<img id=\"created_by_img\" src=\"https://image.tmdb.org/t/p/w500/" + results[0].created_by[j].profile_path + "\"><br>";
+            }
+            else {
+                img_html = "<img id=\"created_by_img\" src=\"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t31.0-1/c282.0.960.960/p960x960/10506738_10150004552801856_220367501106153455_o.jpg" + "\"><br>";
+            }
+            current_results_createdBy_div += "<td style=\"vertical-align: bottom; text-align: center; padding-left: 30px;\">" + img_html + "<b>" + results[0].created_by[j].name + "</b>" + "<\/td>";
+        }
+        document.getElementById("results_createdBy_div").innerHTML = "<table><tr>" + current_results_createdBy_div + "</tr></table>";
+
+        document.getElementById("more_info_button").onclick = function () {
+            var win = window.open(results[0].homepage, '_blank');
         }
 
     </script>
 
     <div id="footer">
-        &copy; 2016 Charles Liu, Eddy Lu</a>
+        &copy; 2016 Charles Liu, Eddy Lu
     </div>
 </body>
 </html>
