@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CodeJam 2016</title>
+    <style>
+        body {
+            margin: 0px;
+            font-family: Calibri;
+            color: #333333;
+        }
+
+        #header_bar {
+            position: fixed;
+            top: 0px;
+            z-index: 200;
+            height: 50px;
+            width: 100%;
+            box-shadow: 0px 0px 20px #1A1A1A;
+            font-size: large;
+            background-color: #262626;
+            color: #D9D9D9;
+        }
+
+        #header_wrapper {
+            margin: 0px 40px 0px 40px;
+        }
+
+        #header_placeholder {
+            height: 50px;
+            width: 100%;
+        }
+
+        #title {
+            float: left;
+            margin-right: 30px;
+            height: 50px;
+            padding: 0px 10px 0px 10px;
+        }
+
+        #title_left {
+            float: left;
+            height: 50px;
+            line-height: 50px;
+            font-size: xx-large;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        #menu {
+            height: 50px;
+        }
+
+        #menu_right {
+            float: right;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        #header ul {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+            list-style-type: none;
+        }
+
+        #header li {
+            display: inline-block;
+        }
+
+        #header li a {
+            margin: 0px;
+            padding: 0px 10px 0px 10px;
+            display: inline-block;
+            text-decoration: none;
+            color: #D9D9D9;
+        }
+
+        #header li a:hover {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        #container {
+            position: relative;
+            overflow: auto;
+            padding: 50px;
+            clear: both;
+            font-size: large;
+        }
+
+        #instructions_rating_image {
+            max-height: 400px;
+            max-width: 600px;
+            padding: 10px;
+            box-shadow: 0px 0px 10px #CCCCCC;
+        }
+
+        #star_div {
+            display: inline-block;
+            width: 180px;
+            height: 180px;
+            vertical-align: middle;
+        }
+
+        #star5 {
+            width: 150px;
+        }
+        #star0 {
+            width: 150px;
+        }
+        #star1 {
+            width: 150px;
+        }
+        #star2 {
+            width: 150px;
+        }
+        #star3 {
+            width: 150px;
+        }
+        #star4 {
+            width: 150px;
+        }
+
+        #ready_button {
+            height: 80px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;   
+            margin-top: 30px;
+    
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 50px;
+            text-align: center;
+
+            background-color: #585858;
+            color: #D9D9D9;
+
+            cursor: pointer;
+        }
+
+        #ready_button:hover {
+            background-color: #686868;
+        }
+
+        #footer {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="header_bar">
+            <div id="header_wrapper">
+                <a href="">
+                    <div id="title">
+                        <div id="title_left">CodeJam 2016</div>
+                    </div>
+                </a>
+                <div id="menu">
+                    <div id="menu_right">
+                        <ul>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header_placeholder"></div>
+    </div>
+
+    <div id="container" style="text-align: center">
+        <div id="wrapper" style="display: inline-block;">  
+            
+            <div id="instruction1">
+                <h1 id="instruction1_h1" style="margin-bottom: 50px;">We're going to show you 30 TV show listings...</h1>
+                <span id="instructions_rating_image_span">
+                    <img id="instructions_rating_image" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" />
+                    <img id="instructions_rating_image" src="https://image.tmdb.org/t/p/w500/igDhbYQTvact1SbNDbzoeiFBGda.jpg" />
+                    <img id="instructions_rating_image" src="https://images-na.ssl-images-amazon.com/images/I/51VHqph7piL.jpg" />
+                </span>
+            </div>
+            
+            <!--<div id="instruction2">
+                <h1 style="margin-bottom: 50px;">Then press on a star to rate each show</h1>
+                <div id="star_div"><img id="star5" src="star_gray.png" style="opacity: 0.3" /></div>
+                <div id="star_div"><img id="star0" src="star_gray.png" /></div>
+                <div id="star_div"><img id="star1" src="star_gray.png" /></div>
+                <div id="star_div"><img id="star2" src="star_gray.png" /></div>
+                <div id="star_div"><img id="star3" src="star_gray.png" /></div>
+                <div id="star_div"><img id="star4" src="star_gray.png" /></div>
+                <div id="ratingComment" style="font-size: 100px; margin: 20px 0px 30px 0px;">&nbsp;</div>
+            </div>-->
+        </div>
+    </div>
+    <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
+    <script src="scripts/require.js"></script>
+    <script>
+
+        document.getElementById("instruction1_h1").style.opacity = 0;
+        document.getElementById("instructions_rating_image_span").style.opacity = 0;
+
+        var fadeIn = function (id) {
+            var intensity = 0;
+            var fadeInInterval = setInterval(function () {
+                if (intensity < 1) {
+                    intensity += 0.01;
+                    document.getElementById(id).style.opacity = intensity;
+                }
+                else {
+                    clearInterval(fadeInInterval);
+                }
+            }, 25);
+        }
+
+        var fadeOut = function (id) {
+            var intensity = 1;
+            var fadeOutInterval = setInterval(function () {
+                if (intensity > 0) {
+                    intensity -= 0.01;
+                    document.getElementById(id).style.opacity = intensity;
+                }
+                else {
+                    clearInterval(fadeOutInterval);
+                }
+            }, 25);
+        }
+
+        var basePause1 = 1000;
+
+        setTimeout(function () {
+            fadeIn("instruction1_h1");
+        }, basePause1 + 0);
+
+        setTimeout(function () {
+            fadeIn("instructions_rating_image_span");
+        }, basePause1 + 2500);
+
+        setTimeout(function () {
+            fadeOut("instruction1_h1");
+        }, basePause1 + 10000);
+
+        setTimeout(function () {
+            fadeOut("instructions_rating_image_span");
+        }, basePause1 + 12500);
+
+        setTimeout(function () {
+            document.getElementById("instruction1").innerHTML =
+                "<h1 id=\"instruction2_h1\" style=\"margin-bottom: 50px;\">Then press on a star to rate each show</h1>"
+                    + "<div id=\"star_div\"><img id=\"star5\" src=\"star_gray.png\" style=\"opacity: 0.3\" /></div>"
+                    + "<div id=\"star_div\"><img id=\"star0\" src=\"star_gray.png\" /></div>"
+                    + "<div id=\"star_div\"><img id=\"star1\" src=\"star_gray.png\" /></div>"
+                    + "<div id=\"star_div\"><img id=\"star2\" src=\"star_gray.png\" /></div>"
+                    + "<div id=\"star_div\"><img id=\"star3\" src=\"star_gray.png\" /></div>"
+                    + "<div id=\"star_div\"><img id=\"star4\" src=\"star_gray.png\" /></div>"
+                    + "<div id=\"ratingComment\" style=\"font-size: 100px; margin: 20px 0px 30px 0px;\">&nbsp;</div>";
+            document.getElementById("instruction1").style.opacity = 0;
+        }, basePause1 + 16000);
+        
+        var enlarge_and_shrink = function (star_id) {
+            var width = 150;
+            var enlargeInterval = setInterval(function () {
+                var star = document.getElementById(star_id);
+                if (width < 180) {
+                    width += 1;
+                    star.style.width = width + "px";
+                }
+                else {
+                    clearInterval(enlargeInterval);
+                    var shrinkInterval = setInterval(function () {
+                        var star = document.getElementById(star_id);
+                        if (width > 150) {
+                            width -= 1;
+                            star.style.width = width + "px";
+                        }
+                        else {
+                            clearInterval(shrinkInterval);
+                        }
+                    }, 30);
+                }
+            }, 30);
+        }
+
+        var animateStar = function (starIndex) {
+
+            var stars = [];
+            for (var i = 0; i < 6; i++) {
+                stars.push(document.getElementById("star" + i));
+            }
+            var ratingComment = document.getElementById("ratingComment");
+
+            if (starIndex == -1) {
+                for (var i = 0; i < 5; i++) {
+                    stars[i].src = "star_gray.png";
+                }
+                stars[5].style.opacity = "0.3";
+                ratingComment.innerHTML = "&nbsp;";
+            }
+            else if (starIndex == 5) {
+                enlarge_and_shrink("star" + starIndex);
+                stars[5].style.opacity = "0.5";
+                for (var i = 0; i < 5; i++) {
+                    stars[i].src = "star_gray.png";
+                }
+                stars[5].src = "star_gold.png";
+                ratingComment.innerHTML = "Haven't seen it";
+            }
+            else {
+                for (var i = 0; i <= starIndex; i++) {
+                    enlarge_and_shrink("star" + i);
+                    stars[i].src = "star_gold.png";
+                }
+                for (var i = starIndex + 1; i < 5; i++) {
+                    stars[i].src = "star_gray.png";
+                }
+                var ratingComments = [];
+                ratingComments.push("Poor...");
+                ratingComments.push("Bad..");
+                ratingComments.push("Fair");
+                ratingComments.push("Good!");
+                ratingComments.push("EXCELLENT!");
+                ratingComment.innerHTML = ratingComments[starIndex];
+            }
+        }
+
+        var basePause2 = 21000;
+
+        setTimeout(function () {
+            fadeIn("instruction1");
+        }, 17000 + 0);
+
+        setTimeout(function () {
+            animateStar(0)
+        }, basePause2 + 0);
+
+        setTimeout(function () {
+            animateStar(1)
+        }, basePause2 + 2000);
+
+        setTimeout(function () {
+            animateStar(2)
+        }, basePause2 + 4000);
+
+        setTimeout(function () {
+            animateStar(3)
+        }, basePause2 + 6000);
+
+        setTimeout(function () {
+            animateStar(4)
+        }, basePause2 + 8000);
+
+        setTimeout(function () {
+            animateStar(5)
+        }, basePause2 + 10000);
+
+        setTimeout(function () {
+            document.getElementById("star5").src = "star_gray.png";
+            document.getElementById("ratingComment").innerHTML = "<input id=\"ready_button\" type=\"button\" value=\"I'm ready! &#9658;\" style=\"opacity: 0\" />";
+            document.getElementById("ready_button").onclick = function () {
+                var win = window.open("rate.html", "_self");
+            }
+
+            $("#ready_button").fadeTo("slow", 1, function () {
+                // function complete
+            });
+        }, basePause2 + 12000);
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <div id="footer">
+        &copy; 2016 Charles Liu, Eddy Lu
+    </div>
+</body>
+</html>
