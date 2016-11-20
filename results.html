@@ -70,18 +70,18 @@
             display: inline-block;
         }
 
-            #header li a {
-                margin: 0px;
-                padding: 0px 10px 0px 10px;
-                display: inline-block;
-                text-decoration: none;
-                color: #D9D9D9;
-            }
+        #header li a {
+            margin: 0px;
+            padding: 0px 10px 0px 10px;
+            display: inline-block;
+            text-decoration: none;
+            color: #D9D9D9;
+        }
 
-                #header li a:hover {
-                    background-color: #1A1A1A;
-                    color: #FFFFFF;
-                }
+        #header li a:hover {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+        }
 
         #container {
             position: relative;
@@ -162,14 +162,15 @@
             </div>
             <div id="right_div" style="float: left; text-align: left; width: 500px; margin-left: 50px;">
                 <div style="text-align: center;">
-                    <h1>Doctor Who (2013)</h1>
+                    <h1 id="result_h1">&nbsp;</h1>
                 </div>
                 <h2 style="display: inline; margin-right: 10px;">Genres:</h2>
                 <span id="results_genres_span" style="font-size: larger;">&nbsp;</span>
 
                 <br />
 
-                <h2 style=" margin-right: 10px;">Created By:</h2>
+                <h2 style="margin-right: 10px;">Created By:</h2>
+
                 <div id="results_createdBy_div">&nbsp;</div>
 
                 <br />
@@ -369,42 +370,215 @@
             "vote_count": 291
         });
 
-        console.log(results[0].name);
-        console.log(parseInt(results[0].last_air_date.substring(0, 4)));
+        results.push({
+            "backdrop_path": "/cVWsigSx97cTw1QfYFFsCMcR4bp.jpg",
+            "created_by": [
+            {
+                "id": 57293,
+                "name": "Sydney Newman",
+                "profile_path": "/1YfvkmiBjWPI67GsfoMd1NoPews.jpg"
+            },
+            {
+                "id": 1213434,
+                "name": "C. E. Webber",
+                "profile_path": null
+            },
+            {
+                "id": 1213433,
+                "name": "Donald Wilson",
+                "profile_path": "/1DeMkL3rF12uHMeMUlHXAoMUvDC.jpg"
+            }
+            ],
+            "episode_run_time": [
+            80,
+            70,
+            50,
+            60,
+            45
+            ],
+            "first_air_date": "2005-03-26",
+            "genres": [
+            {
+                "id": 28,
+                "name": "Romance"
+            },
+            {
+                "id": 12,
+                "name": "Comedy"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 878,
+                "name": "Science Fiction"
+            }
+            ],
+            "homepage": "http://www.bbc.co.uk/programmes/b006q2x0",
+            "id": 57243,
+            "in_production": true,
+            "languages": [
+            "en"
+            ],
+            "last_air_date": "2018-04-30",
+            "name": "Doctor Who",
+            "networks": [
+            {
+                "id": 4,
+                "name": "BBC One"
+            },
+            {
+                "id": 511,
+                "name": "France 4"
+            }
+            ],
+            "number_of_episodes": 116,
+            "number_of_seasons": 10,
+            "origin_country": [
+            "GB"
+            ],
+            "original_language": "en",
+            "original_name": "Doctor Who",
+            "overview": "The Doctor looks and seems human. He's handsome, witty, and could be mistaken for just another man in the street. But he is a Time Lord: a 900 year old alien with 2 hearts, part of a gifted civilization who mastered time travel. The Doctor saves planets for a living – more of a hobby actually, and he's very, very good at it. He's saved us from alien menaces and evil from before time began – but just who is he?",
+            "popularity": 36.315782,
+            "poster_path": "/igDhbYQTvact1SbNDbzoeiFBGda.jpg",
+            "production_companies": [
+            {
+                "name": "BBC Wales",
+                "id": 4762
+            },
+            {
+                "name": "Canadian Broadcasting Corporation",
+                "id": 71708
+            }
+            ],
+            "seasons": [
+            {
+                "air_date": "2005-11-18",
+                "episode_count": 161,
+                "id": 58476,
+                "poster_path": "/Shm5ZavLApx6HMFWviKP5Sx1J8.jpg",
+                "season_number": 0
+            },
+            {
+                "air_date": "2005-03-26",
+                "episode_count": 13,
+                "id": 58468,
+                "poster_path": "/9Jt2FFCAME7eHDC28r4qCHErhhF.jpg",
+                "season_number": 1
+            },
+            {
+                "air_date": "2006-04-15",
+                "episode_count": 13,
+                "id": 58469,
+                "poster_path": "/oXVmsIkZCgJDNcZJJxzvV7zwyb1.jpg",
+                "season_number": 2
+            },
+            {
+                "air_date": "2007-04-01",
+                "episode_count": 13,
+                "id": 58470,
+                "poster_path": "/67xbjSv353G2rqQIs6dnDKc6P11.jpg",
+                "season_number": 3
+            },
+            {
+                "air_date": "2008-04-05",
+                "episode_count": 13,
+                "id": 58471,
+                "poster_path": "/h6hogh9U371q87XLhvrJbczg8lm.jpg",
+                "season_number": 4
+            },
+            {
+                "air_date": "2010-04-03",
+                "episode_count": 13,
+                "id": 58472,
+                "poster_path": "/hUsQerEeMqsu9cVYzMEB2OGJjrw.jpg",
+                "season_number": 5
+            },
+            {
+                "air_date": "2011-04-23",
+                "episode_count": 13,
+                "id": 58473,
+                "poster_path": "/xmfMcVkVer5r33QhA4e2DpIR78B.jpg",
+                "season_number": 6
+            },
+            {
+                "air_date": "2012-09-01",
+                "episode_count": 13,
+                "id": 58474,
+                "poster_path": "/6biGcR0OyFnKRxxUW7bGtK49wTd.jpg",
+                "season_number": 7
+            },
+            {
+                "air_date": "2014-08-23",
+                "episode_count": 12,
+                "id": 58475,
+                "poster_path": "/wLxULmhnIM1wbzjzvFnEq8YXtFB.jpg",
+                "season_number": 8
+            },
+            {
+                "air_date": "2015-09-19",
+                "episode_count": 12,
+                "id": 64188,
+                "poster_path": "/uidaCdI0hKiZGfMzWHNMYeNZyV7.jpg",
+                "season_number": 9
+            },
+            {
+                "air_date": "2017-04-30",
+                "episode_count": 1,
+                "id": 76615,
+                "poster_path": null,
+                "season_number": 10
+            }
+            ],
+            "status": "Returning Series",
+            "type": "Scripted",
+            "vote_average": 7.1,
+            "vote_count": 291
+        });
 
-        document.getElementById("results_genres_span").innerHTML = "";
-        for (var j = 0; j < results[0].genres.length; j++) {
-            if (j == 0) {
-                document.getElementById("results_genres_span").innerHTML += results[0].genres[j].name;
+        var updateResult = function (index) {
+
+            document.getElementById("result_h1").innerHTML = results[index].name + " (" + parseInt(results[index].last_air_date.substring(0, 4)) + ")";
+
+            document.getElementById("results_genres_span").innerHTML = "";
+            for (var j = 0; j < results[index].genres.length; j++) {
+                if (j == 0) {
+                    document.getElementById("results_genres_span").innerHTML += results[index].genres[j].name;
+                }
+                else {
+                    document.getElementById("results_genres_span").innerHTML += ", " + results[index].genres[j].name;
+                }
             }
-            else {
-                document.getElementById("results_genres_span").innerHTML += ", " + results[0].genres[j].name;
+
+            document.getElementById("number_of_episodes_span").innerHTML = results[index].number_of_episodes;
+            document.getElementById("number_of_seasons_span").innerHTML = results[index].number_of_seasons;
+
+            document.getElementById("vote_average_span").innerHTML = results[index].vote_average;
+            document.getElementById("vote_count_span").innerHTML = results[index].vote_count;
+
+            current_results_createdBy_div = "";
+            for (var j = 0; j < results[index].created_by.length; j++) {
+                console.log(results[index].created_by[j].name);
+                var img_html = "";
+                if (results[index].created_by[j].profile_path) {
+                    img_html = "<img id=\"created_by_img\" src=\"https://image.tmdb.org/t/p/w500/" + results[index].created_by[j].profile_path + "\"><br>";
+                }
+                else {
+                    img_html = "<img id=\"created_by_img\" src=\"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t31.0-1/c282.0.960.960/p960x960/10506738_10150004552801856_220367501106153455_o.jpg" + "\"><br>";
+                }
+                current_results_createdBy_div += "<td style=\"vertical-align: bottom; text-align: center; padding-left: 30px;\">" + img_html + "<b>" + results[index].created_by[j].name + "</b>" + "<\/td>";
             }
+            document.getElementById("results_createdBy_div").innerHTML = "<table><tr>" + current_results_createdBy_div + "</tr></table>";
+
+            document.getElementById("more_info_button").onclick = function () {
+                var win = window.open(results[index].homepage, '_blank');
+            }
+
         }
 
-        document.getElementById("number_of_episodes_span").innerHTML = results[0].number_of_episodes;
-        document.getElementById("number_of_seasons_span").innerHTML = results[0].number_of_seasons;
-
-        document.getElementById("vote_average_span").innerHTML = results[0].vote_average;
-        document.getElementById("vote_count_span").innerHTML = results[0].vote_count;
-
-        current_results_createdBy_div = "";
-        for (var j = 0; j < results[0].created_by.length; j++) {
-            console.log(results[0].created_by[j].name);
-            var img_html = "";
-            if (results[0].created_by[j].profile_path) {
-                img_html = "<img id=\"created_by_img\" src=\"https://image.tmdb.org/t/p/w500/" + results[0].created_by[j].profile_path + "\"><br>";
-            }
-            else {
-                img_html = "<img id=\"created_by_img\" src=\"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t31.0-1/c282.0.960.960/p960x960/10506738_10150004552801856_220367501106153455_o.jpg" + "\"><br>";
-            }
-            current_results_createdBy_div += "<td style=\"vertical-align: bottom; text-align: center; padding-left: 30px;\">" + img_html + "<b>" + results[0].created_by[j].name + "</b>" + "<\/td>";
-        }
-        document.getElementById("results_createdBy_div").innerHTML = "<table><tr>" + current_results_createdBy_div + "</tr></table>";
-
-        document.getElementById("more_info_button").onclick = function () {
-            var win = window.open(results[0].homepage, '_blank');
-        }
+        updateResult(0);
 
     </script>
 
