@@ -287,6 +287,8 @@
     </div>
     <!-- <script data-main="scripts/main" src="scripts/require.js"></script> -->
     <script src="scripts/require.js"></script>
+    <script src="createQueries.js"></script>
+    <script src="retrieveQueryParameters.js"></script>
     <script>
     // Helper Methods
         function sendRequest(taskParams, fieldParams)
@@ -362,8 +364,8 @@
         // "MAIN" file for all JavaScript
         require(['scripts/creds.js'], function(data){
           // load creds.js with requireJS in order to expose API token key to this environment
-          var display_limit = 3;
-          mostPop = fetch_most_pop(jsonData).splice(0,display_limit);
+          var display_limit = 30;
+          mostPop = fetch_most_pop(jsonData).splice(0, display_limit);
           // console.log(mostPop);
           var ratings = populate_show_info_arrays(jsonData, mostPop);
           var ratingTitles = ratings[0];
@@ -385,7 +387,7 @@
             if (!inTransition) {
                 inTransition = true;
                 currentRating++;
-                var ratings_total = 3 // for testing purposes, we're only using 3 movies now
+                var ratings_total = 30 // for testing purposes, we're only using 3 movies now
                 if (currentRating < ratings_total) {
                   // if still more recommendations to do
                     var rating = convert_star_id_to_rating(starIndex)
@@ -414,9 +416,9 @@
                                     clearInterval(fadeIn);
                                     inTransition = false;
                                 }
-                            }, 20);
+                            }, 1); //20);
                         }
-                    }, 10);
+                    }, 1); //10);
                 }
                 else {
                     // execute request for recommendations
@@ -451,7 +453,7 @@
                     // user_ratings = JSON.parse(localStorage.getItem('user_ratings'));
                     // console.log(user_ratings);
 
-                    // insert js code after
+                    retrieveQueryParameters(finalUserPref);
                 }
             }
         }
@@ -491,7 +493,7 @@
                 ratingComment.innerHTML = ratingComments[starIndex];
             }
         }
-    </script>
+    </script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <div id="footer">
         &copy; 2016 Charles Liu, Eddy Lu
