@@ -63,7 +63,7 @@
       var sum_genre_counts = genre_counts.reduce(add, 0);
       genres.forEach(function(genre){
         // genre_scores[genre.name] = (genre.count/sum_genre_counts)*avgRatingPerGenre[genre.name];
-        genre_scores[genre.name] = avgRatingPerGenre[genre.name];
+        genre_scores[genre.id] = avgRatingPerGenre[genre.name];
       })
       return genre_scores;
     }
