@@ -170,7 +170,7 @@
             <div id="header_wrapper">
                 <a href="">
                     <div id="title">
-                        <div id="title_left">CodeJam 2016</div>
+                        <div id="title_left"><a href="index.html" style="text-decoration: none; color: #FFFFFF;">CodeJam 2016</a></div>
                     </div>
                 </a>
                 <div id="menu">
@@ -364,7 +364,52 @@
 
         });
 
+        var updateResultContent = function (index) {
+
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("results_bar_image_" + i).src = "https://image.tmdb.org/t/p/w500/" + results[i - 1].poster_path;
+            }
+
+            document.getElementById("rating_image").src = "https://image.tmdb.org/t/p/w500/" + results[index].poster_path;
+
+            document.getElementById("result_h1").innerHTML = results[index].name + " (" + parseInt(results[index].last_air_date.substring(0, 4)) + ")";
+
+            document.getElementById("results_genres_span").innerHTML = "";
+            for (var j = 0; j < results[index].genres.length; j++) {
+                if (j == 0) {
+                    document.getElementById("results_genres_span").innerHTML += results[index].genres[j].name;
+                }
+                else {
+                    document.getElementById("results_genres_span").innerHTML += ", " + results[index].genres[j].name;
+                }
+            }
+
+            document.getElementById("number_of_episodes_span").innerHTML = results[index].number_of_episodes;
+            document.getElementById("number_of_seasons_span").innerHTML = results[index].number_of_seasons;
+
+            document.getElementById("vote_average_span").innerHTML = results[index].vote_average;
+            document.getElementById("vote_count_span").innerHTML = results[index].vote_count;
+
+            current_results_createdBy_div = "";
+            for (var j = 0; j < results[index].created_by.length; j++) {
+                var img_html = "";
+                if (results[index].created_by[j].profile_path) {
+                    img_html = "<img id=\"created_by_img\" src=\"https://image.tmdb.org/t/p/w500/" + results[index].created_by[j].profile_path + "\"><br>";
+                }
+                else {
+                    img_html = "<img id=\"created_by_img\" src=\"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/t31.0-1/c282.0.960.960/p960x960/10506738_10150004552801856_220367501106153455_o.jpg" + "\"><br>";
+                }
+                current_results_createdBy_div += "<td style=\"vertical-align: bottom; text-align: center; padding-left: 30px;\">" + img_html + "<b>" + results[index].created_by[j].name + "</b>" + "<\/td>";
+            }
+            document.getElementById("results_createdBy_div").innerHTML = "<table><tr>" + current_results_createdBy_div + "</tr></table>";
+
+            document.getElementById("more_info_button").onclick = function () {
+                var win = window.open(results[index].homepage, '_blank');
+            }
+        }
+
         var updateResultsPane = function (index) {
+            updateResultContent(index - 1);
             for (var i = 1; i <= 5; i++) {
                 if (i == index) {
                     continue;
@@ -373,7 +418,6 @@
             }
             document.getElementById("results_bar_listing_" + index).style.opacity = 1;
         }
-
     </script>
 
     <div id="footer">
