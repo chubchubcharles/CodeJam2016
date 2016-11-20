@@ -1,7 +1,7 @@
 ﻿var retrieveQueryParameters = function (jsons) {
 
-    var genres = [];
-    var created_bys = [];
+    var genres = []; // array of objects that represent genre with respective name, id, and count attributes
+    var created_bys = []; // etc..
     var years = [];
 
     var checkIfGenreExists = function (current_genre) {
@@ -35,7 +35,7 @@
     }
 
     for (var i = 0; i < jsons.length; i++) {
-
+        // check each json object of show and loop through its genres and add the counts to the genres array
         var current_genres = jsons[i].genres;
         if (current_genres) {
             for (var j = 0; j < current_genres.length; j++) {
@@ -67,14 +67,38 @@
         }
     }
 
+    function findAvgRatingPerGenre(genres){
+      avg_ratings = {};
+      genres.forEach(function(genre){
+        genre_name = genre.name
+        total_genre_samples = 0;
+        for (var i = 0; i < jsons.length; i++){
+          jsons[i].genres.forEach(function(g){
+            if (g.name == genre_name){
+              ur = parseInt(jsons[i].user_rating, 10);
+              if (genre_name in avg_ratings){
+                avg_ratings[genre_name] += ur;
+                total_genre_samples += 1;
+                // console.log(parseInt(total_genre_samples) + " seen for genre:" + genre_name);
+              }
+              else{
+                avg_ratings[genre_name] = ur;
+                total_genre_samples += 1;
+              }
+            }
+          })
+        }
+        avg_ratings[genre] = avg_ratings[genre]/total_genre_samples;
+      })
+      return avg_ratings;
+    }
+
     var parameters = {};
 
     parameters.genres = genres;
     parameters.created_bys = created_bys;
     parameters.years = years;
-
-    console.log("parameters:");
-    console.log(parameters);
+    parameters.genre_avg_ratings = findAvgRatingPerGenre(genres);
 
     createQueries(parameters);
 }

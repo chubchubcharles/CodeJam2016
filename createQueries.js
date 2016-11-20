@@ -3,51 +3,80 @@
     var genres = queryParameters.genres;
     var created_bys = queryParameters.created_bys;
     var years = queryParameters.years;
+    var avgRatingPerGenre = queryParameters.genre_avg_ratings;
 
-    //console.log(genres);
-    //console.log(created_bys);
-    //console.log(years);
-
-    var findTopGenre = function () {
-        currentTopGenre = genres[0];
-        currentTopGenreCount = genres[0].count;
-        for (var i = 1; i < genres.length; i++) {
-            if (genres[i].count >= currentTopGenreCount) {
-                currentTopGenre = genres[i];
-            }
-        }
-        return currentTopGenre;
+    // Methods related to summarizing the sample of shows we tell user to rate ; not indicative of user ratings!
+    var findMostCountsPerAttrb = function(attributes)
+    {
+      // e.g. attributes == genres, attributes == created_by, attribtues == year
+      currentTopAttrb = attributes[0];
+      currentTopAttrbCount = attributes[0].count;
+      for (var i = 1; i < attributes.length; i++) {
+          if (attributes[i].count >= currentTopAttrbCount) {
+              currentTopAttrb = attributes[i];
+          }
+      }
+      return currentTopAttrb;
     }
 
-    var findTopCreatedBy = function () {
-        currentTopCreatedBy = created_bys[0];
-        currentTopCreatedByCount = created_bys[0].count;
-        for (var i = 1; i < created_bys.length; i++) {
-            if (created_bys[i].count >= currentTopCreatedByCount) {
-                currentTopCreatedBy = created_bys[i];
-            }
-        }
-        return currentTopCreatedBy;
+    var findMostGenreCounts = function () {
+      return findMostCountsPerAttrb(genres);
     }
 
-    var findTopYear = function () {
-        currentTopYear = years[0];
-        currentTopYearCount = years[0].count;
-        for (var i = 1; i < years.length; i++) {
-            if (years[i].count >= currentTopYearCount) {
-                currentTopYear = years[i];
-            }
-        }
-        return currentTopYear;
+    var findMostCreatedByCounts = function () {
+      return findMostCountsPerAttrb(created_bys);
+    }
+
+    var findMostYearCounts = function () {
+      return findMostCountsPerAttrb(years);
+    }
+
+    /**
+      To determine the most preferred genre, we use this criteria:
+      = (%_of_genre_in_sample_size) * (avg_ratings_for_all_samples_of_genre_class)
+
+      E.g.
+
+      Genre samples = {Action, Action, Family, Action}
+      User ratings (corresponding to same order)= {1, 3, 3, 2}
+
+      Intuitively: on average they prefer family more even though only one Family film rating received
+
+      Result from critiera:
+      = Score for "Action" genre
+      = (3/4)*(2) = 1.5
+
+      = Score for "Family" genre
+      = (1/4)*(3) = 1.75
+
+      This works very crudely!
+
+    **/
+
+    var findGenreScores = function(genres){
+      function add(a,b){ return a+b;};
+      var genre_scores = {};
+      var genre_sums = {}
+      var genre_counts = genres.map(function(genre){ return genre.count;});
+      var sum_genre_counts = genre_counts.reduce(add, 0);
+      genres.forEach(function(genre){
+        genre_scores[genre.name] = (genre.count/sum_genre_counts)*avgRatingPerGenre[genre.name];
+      })
+      return genre_scores;
     }
 
     //var genre_importance = 2;
     //var created_by_importance = 5;
     //var year_importance = 1;
 
-    topGenre = findTopGenre();
-    topCreatedBy = findTopCreatedBy();
-    topYear = findTopYear();
+    mostGenreCounts = findMostGenreCounts();
+    mostCreatedByCounts = findMostCreatedByCounts();
+    mostYearCounts = findMostYearCounts();
+
+    scores = findGenreScores(genres);
+    console.log(scores);
+    var topGenre = Object.keys(scores).reduce(function(a, b){ return scores[a] > scores[b] ? a : b });
+    console.log(topGenre);
 
     var baseURL = "http://hello123.com/lalala/abc/?=";
     var genreURL = "&genre=" + topGenre.id;
@@ -76,10 +105,9 @@
     resultIds.push(55555);
 
     var load = function () {
-        window.location.href = "results.html" + "?id1=" + resultIds[0] + "&id2=" + resultIds[1] 
+        window.location.href = "results.html" + "?id1=" + resultIds[0] + "&id2=" + resultIds[1]
             + "&id3=" + resultIds[2] + "&id4=" + resultIds[3] + "&id5=" + resultIds[4];
     }
 
     load();
 }
-
