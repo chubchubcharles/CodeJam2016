@@ -9,6 +9,12 @@ https://www.themoviedb.org/documentation/api) to query for TV show information a
 * RequireJS 2.3.2
 * jQuery 1.12.4
 
+## Design Process Description
+First, we asked ourselves how to characterize a user's preferences without asking too many questions.
+This led us to ask the user for some ratings in the beginning and then through the specific features
+of these movies, undergo a complex mathematical process to churn out recommendations. We also wanted
+the design to be simple and intuitive, which led us to use 5-star rating as a rating measure.
+
 ## Get Started
 All you have to do is open "rateinstructions.html" in your Google Chrome browser!
 
