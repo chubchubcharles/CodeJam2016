@@ -95,32 +95,36 @@
     var topGenres = findTopGenres(scores);
     console.log("There are the genres tied for top:"  + topGenres); // array of topGenres which are tied for the highest avg rating
 
+    //var baseURL = "http://hello123.com/lalala/abc/?=";
+    //var genreURL = "&with_genres=" + topGenres[0];
+    //var createdByURL = "&createdby=" + topCreatedBy.id;
+    //var yearURL = "&year=" + topYear.year;
 
-    var baseURL = "http://hello123.com/lalala/abc/?=";
-    var genreURL = "&genre=" + topGenre.id;
-    var createdByURL = "&createdby=" + topCreatedBy.id;
-    var yearURL = "&year=" + topYear.year;
+    //var generateQueries = function () {
+    //    queries = [];
+    //    queries.push(baseURL + genreURL + createdByURL + yearURL);
+    //    queries.push(baseURL + genreURL + createdByURL);
+    //    queries.push(baseURL + createdByURL + yearURL);
+    //    queries.push(baseURL + createdByURL);
+    //    queries.push(baseURL + genreURL);
+    //    queries.push(baseURL + yearURL);
+    //    return queries;
+    //}
+    //
+    //console.log(generateQueries());
 
-    var generateQueries = function () {
-        queries = [];
-        queries.push(baseURL + genreURL + createdByURL + yearURL);
-        queries.push(baseURL + genreURL + createdByURL);
-        queries.push(baseURL + createdByURL + yearURL);
-        queries.push(baseURL + createdByURL);
-        queries.push(baseURL + genreURL);
-        queries.push(baseURL + yearURL);
-        return queries;
-    }
+    var topResults = sendRequest("discover/tv?", "&with_genres=" + topGenres[0]);
 
-    console.log(generateQueries());
+    var parsedResults = JSON.parse(topResults).results;
+
+    //console.log(parsedResults[0]);
 
     var resultIds = [];
+    for (var i = 0; i < 5; i++) {
+        resultIds.push(parsedResults[i].id);
+    }
 
-    resultIds.push(1);
-    resultIds.push(22);
-    resultIds.push(333);
-    resultIds.push(4444);
-    resultIds.push(55555);
+    console.log(resultIds);
 
     var load = function () {
         window.location.href = "results.html" + "?id1=" + resultIds[0] + "&id2=" + resultIds[1]
