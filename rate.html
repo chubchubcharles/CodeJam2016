@@ -445,7 +445,9 @@
                     // user_ratings = JSON.parse(localStorage.getItem('user_ratings'));
                     // console.log(user_ratings);
 
-                    retrieveQueryParameters(finalUserPref);
+                    var shows_rated_already = mostPop.map(function(show_item){ return show_item.id;});
+
+                    retrieveQueryParameters(finalUserPref, shows_rated_already);
                 }
             }
         }

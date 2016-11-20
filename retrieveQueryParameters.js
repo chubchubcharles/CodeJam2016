@@ -1,4 +1,4 @@
-﻿var retrieveQueryParameters = function (jsons) {
+﻿var retrieveQueryParameters = function (jsons, shows_rated_already) {
 
     var genres = []; // array of objects that represent genre with respective name, id, and count attributes
     var created_bys = []; // etc..
@@ -100,5 +100,5 @@
     parameters.years = years;
     parameters.genre_avg_ratings = findAvgRatingPerGenre(genres);
 
-    createQueries(parameters);
+    createQueries(parameters, shows_rated_already);
 }
