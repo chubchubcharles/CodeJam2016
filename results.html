@@ -362,6 +362,13 @@
                 fadeIn("wrapper");
             }, 6000);
 
+            if (!(results[4].homepage.length > 0)) {
+                document.getElementById("more_info_button").style.visibility = "hidden";
+            }
+            else {
+                document.getElementById("more_info_button").style.visibility = "visible";
+            }
+
         });
 
         var updateResultContent = function (index) {
@@ -417,6 +424,13 @@
                 document.getElementById("results_bar_listing_" + i).style.opacity = 0.3;
             }
             document.getElementById("results_bar_listing_" + index).style.opacity = 1;
+
+            if (!(results[index - 1].homepage.length > 0)) {
+                document.getElementById("more_info_button").style.visibility = "hidden";
+            }
+            else {
+                document.getElementById("more_info_button").style.visibility = "visible";
+            }
         }
     </script>
 
