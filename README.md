@@ -15,8 +15,9 @@ This led us to ask the user for some ratings in the beginning and then through t
 of these movies, undergo a complex mathematical process to churn out recommendations. We also wanted
 the design to be simple and intuitive, which led us to use 5-star rating as a rating measure.
 
-## Get Started
-All you have to do is open "rateinstructions.html" in your Google Chrome browser!
+## Demo
+All you have to do is open "index.html" in your Google Chrome browser!
+Or alternatively, it is hosted on http://codejam2016.eddylu.com/ as well!
 
 ## Contribute
 
